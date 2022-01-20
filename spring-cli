@@ -1,0 +1,152 @@
+#!/usr/bin/bash
+
+RED='\033[0;31m'
+BLUE='\033[0;34m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+PURPLE='\033[0;37m]'
+NC='\033[0m'
+BOLD=$(tput bold)
+NORMAl=$(tput sgr0)
+
+javaVersion=""
+
+if [ -z $1 ] || [ $1 = "--help" ]; then
+    echo -e "${YELLOW}${BOLD}spring-cli${NC}: A command-line tool to generate spring projects right from your terminal"
+    printf "\n${BLUE}${BOLD}: Usage${NC}${NORMAL} \n\t${BOLD}spring-cli${NORMAL} {option}\n"
+    printf "${BLUE}${BOLD}: Options${NC}${NORMAL} \n\t${BOLD}--help${NORMAL}\t\t\t\tPrint this help message and exit\n\t${BOLD}--list-dependencies${NORMAL}\t\tList all dependencies\n\t${BOLD}--create-project${NORMAL}\t\tCreate a project interactively"
+    echo
+    exit 1
+
+elif [ $1 = "--dependencies" ]; then
+    echo hi
+
+elif [ $1 = "--create-project" ]; then
+    clear
+    echo -en "${GREEN}${BOLD}: ${YELLOW}Project Name ${NORMAl}${RED}(example = BuisinessApplication)\n${GREEN}${BOLD}: ${BLUE}${NORMAL}(default = DemoApplication) ${GREEN}==> ${NC}" ; read applicationName
+    echo
+    if [ -z $applicationName ]; then 
+        applicationName="DemoApplication"
+    fi
+
+    echo -en "${GREEN}${BOLD}: ${YELLOW}ArtifactId ${NORMAl}${RED}(example = bizApp)\n${GREEN}${BOLD}: ${BLUE}${NORMAL}(default = demo) ${GREEN}==> ${NC}" ; read applicationName
+    echo
+    if [ -z $artifactId ]; then
+        artifactId="demo"
+    fi
+
+    #TODO selection menu for version
+    echo -en "${GREEN}${BOLD}: ${YELLOW}Spring-Boot Version  ${NORMAl}${RED} ${BLUE}1)${NC} 2.5.8 ${BLUE}\n\t\t\t2)${NC} 2.5.9 (SNAPSHOT) ${BLUE}\n\t\t\t3)${NC} 2.6.2 ${BLUE}\n\t\t\t4)${NC} 2.6.3 (SNAPSHOT) ${BLUE}\n\t\t\t5)${NC} 2.7.0 (SNAPSHOT)\n${GREEN}${BOLD}: ${BLUE}${NORMAL}Enter Selection: (default = 3) 2.6.2) ${GREEN}==> ${NC}" ; read springBootVersion
+    echo $springBootVersion
+    if [ -z $springBootVersion ] || [ $springBootVersion = 3 ]; then
+        springBootVersion="2.6.2"
+    elif [ $springBootVersion = 1 ]; then
+        springBootVersion="2.5.8"
+    elif [ $springBootVersion = 2 ]; then
+        springBootVersion="2.5.9"
+    elif [ $springBootVersion = 4 ]; then
+        springBootVersion="2.6.3"
+    elif [ $springBootVersion = 5 ]; then
+        springBootVersion="2.7.0"
+    else
+        echo -e "${RED}?!Invalid Option, selecting Spring-Boot-2.6.2 as default version"
+    fi
+    
+    echo -en "${GREEN}${BOLD}: ${YELLOW}Dependencies (comma-seperated) ${NORMAl}${RED}(example = web,lombok,mysql)\n\t\t\t\tSee ${GREEN}spring-cli --dependencies \n${GREEN}${BOLD}: ${BLUE}${NORMAL}(default = none) ${GREEN}==> ${NC}" ; read dependencies
+    echo
+    if [ -z $dependencies ]; then
+        dependencies=""
+    fi
+
+    echo -en "${GREEN}${BOLD}: ${YELLOW}Description${NORMAl}${RED} (example = A simple REST api)\n${GREEN}${BOLD}: ${BLUE}${NORMAL}(default = Demo project for Spring Boot) ${GREEN}==> ${NC}" ; read description
+    echo
+    if [ -z $description ]; then
+        description=""
+    fi
+
+    echo -en "${GREEN}${BOLD}: ${YELLOW}GroupId ${NORMAl}${RED}(example = com.mycompany.api)\n${GREEN}${BOLD}: ${BLUE}${NORMAL}(default = com.example.demo) ${GREEN}==> ${NC}" ; read groupId
+    echo
+    if [ -z $groupId ]; then
+        groupId=""
+    fi
+
+    echo -en "${GREEN}${BOLD}: ${YELLOW}Enter language: ${BLUE}1)${NC} Java ${BLUE}2)${NC} Kotlin ${BLUE}3)${NC} Groovy\n${GREEN}${BOLD}: ${BLUE}${NORMAL}Enter selection: (default = 1) ${GREEN}==> ${NC}" ; read language
+    echo
+    if [ -z $language ] || [ $language = 1 ]; then
+        language=java
+        echo -en "${GREEN}${BOLD}: ${YELLOW}Java Version ${BLUE}1)${NC} Java-8 ${BLUE}2)${NC} Java-11 ${BLUE}3)${NC} Java-17\n${GREEN}${BOLD}: ${BLUE}${NORMAL}(Enter selection: default = 2) ${GREEN}==> ${NC}" ; read javaVersion
+        echo
+        if [ -z $javaVersion ]; then
+            javaVersion=11
+        elif [ $javaVersion = 1 ]; then
+            javaVersion=8
+        elif [ $javaVersion = 2 ]; then
+            javaVersion=11
+        elif [ $javaVersion = 3 ]; then
+            javaVersion=17;
+        else
+            echo -e "Valid Java version not selected, using default value (11)"
+            javaVersion=11
+        fi
+    elif [ $language = 2 ]; then
+        language="kotlin"
+        echo
+    elif [ $language = 3 ]; then
+        language="groovy"
+        echo
+    else
+        echo -e "${RED}Valid language not selected, using default value (Java)${NC}"
+    fi
+
+    echo -en "${GREEN}${BOLD}: ${YELLOW}Select Packaging ${BLUE}1)${NC} JAR ${BLUE}2)${NC} WAR\n${GREEN}${BOLD}: ${BLUE}${NORMAL}(Enter selection: default = 1) ${GREEN}==> ${NC}" ; read packaging
+    echo
+    if [ -z $packaging ] || [ $packaging = 1 ]; then
+        packaging="jar"
+    elif [ $packaging = 2 ]; then
+        packaging="war"
+    else
+        echo -e "${RED}Valid packaging not selected, using JAR for packaging...${NC}"
+        echo
+        packaging="jar"
+    fi
+
+    echo -en "${GREEN}${BOLD}: ${YELLOW}Build type ${BLUE}1)${NC} maven ${BLUE}2)${NC} gradle\n${GREEN}${BOLD}: ${BLUE}${NORMAL}(Enter selection: default = 1) ${GREEN}==> ${NC}" ; read ptype
+    echo
+    if [ -z $ptype ] || [ $ptype = 1 ]; then
+        ptype="maven-project"
+    elif [ $ptype = 2 ]; then
+        ptype="gradle-project"
+    else
+        echo -e "Valid project-type not selected, using default value (maven)"
+        ptype="maven"
+    fi
+
+    echo Generating project...
+    sleep 2
+
+    if [ $language = "java" ]; then
+        http https://start.spring.io/starter.zip \
+            artifactId==$artifactId \
+            bootVersion==$springBootVersion \
+            dependencies==$dependencies \
+            description=="$description" \
+            groupId==$groupId \
+            javaVersion==$javaVersion \
+            type==$ptype \
+            packaging==$packaging -d
+    else
+        http https://start.spring.io/starter.zip \
+            artifactId==$artifactId \
+            bootVersion==$springBootVersion \
+            dependencies==$dependencies \
+            description=="$description" \
+            groupId==$groupId \
+            javaVersion==$javaVersion \
+            language==$language \
+            type==$ptype \
+            packaging==$packaging -d
+    fi
+else
+    echo -e "${RED}Invalid flag '$1'\nexit..."
+    exit 1
+fi
