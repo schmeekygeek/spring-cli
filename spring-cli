@@ -29,7 +29,7 @@ elif [ $1 = "--create-project" ]; then
         applicationName="DemoApplication"
     fi
 
-    echo -en "${GREEN}${BOLD}: ${YELLOW}ArtifactId ${NORMAl}${RED}(example = bizApp)\n${GREEN}${BOLD}: ${BLUE}${NORMAL}(default = demo) ${GREEN}==> ${NC}" ; read applicationName
+    echo -en "${GREEN}${BOLD}: ${YELLOW}ArtifactId ${NORMAl}${RED}(example = bizApp)\n${GREEN}${BOLD}: ${BLUE}${NORMAL}(default = demo) ${GREEN}==> ${NC}" ; read artifactId
     echo
     if [ -z $artifactId ]; then
         artifactId="demo"
