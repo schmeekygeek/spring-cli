@@ -5,7 +5,7 @@
 Spring-Cli
 </h1>
 <p align="center">
-<a href="https://github.com/schmekygeek/spring-cli/stargazers"><img src="https://img.shields.io/github/stars/schmeekygeek/spring-cli?colorA=1e1e28&colorB=c9cbff&style=for-the-badge&logo=starship style=for-the-badge"></a>
+<a href="https://github.com/schmeekygeek/spring-cli/stargazers"><img src="https://img.shields.io/github/stars/schmeekygeek/spring-cli?colorA=1e1e28&colorB=c9cbff&style=for-the-badge&logo=starship style=for-the-badge"></a>
 </p>
    <p align="center" >A command-line <b><i>Bash</i></b> script to initialize <b><i>Spring-Boot</i></b> projects right from your terminal.</p>
 
@@ -38,9 +38,9 @@ $ chmod +x spring-cli
 $ sudo cp spring-cli /usr/bin/
 ```
 >To uninstall, simply remove `spring-cli` from `/usr/bin/`
->>```bash
->>$ sudo rm /usr/bin/spring-cli
->>```
+>```bash
+>$ sudo rm /usr/bin/spring-cli
+>```
 
 ## Usage
 ```bash
