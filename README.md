@@ -57,7 +57,6 @@ spring-cli: A command-line tool to generate spring projects right from your term
 
 ## Notes
 - I could've gone with cURL as the http client, but I felt like using httpie. You can edit the script however you like to fit your needs.
-- I haven't yet implemented ``spring-cli --list-dependencies`` I'll do that soon enough.
 
 ## Contributing
 All sorts of pull requests to improve the script are welcome :D
