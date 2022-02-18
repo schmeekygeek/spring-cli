@@ -60,7 +60,7 @@ elif [ $1 = "--create-project" ]; then
 
     echo -en "${GREEN}${BOLD}: ${YELLOW}Description${NORMAl}${RED} (example = A simple REST api)\n${GREEN}${BOLD}: ${BLUE}${NORMAL}(default = Demo project for Spring Boot) ${GREEN}==> ${NC}" ; read description
     echo
-    if [ -z $description ]; then
+    if [ -z "$description" ]; then
         description=""
     fi
 
@@ -121,11 +121,12 @@ elif [ $1 = "--create-project" ]; then
         ptype="maven"
     fi
 
-    echo Generating project...
-    sleep 2
+    echo -en "${GREEN}Generating project...${NC}"
+    echo
 
     if [ $language = "java" ]; then
         http https://start.spring.io/starter.zip \
+            applicationName==$applicationName \
             artifactId==$artifactId \
             bootVersion==$springBootVersion \
             dependencies==$dependencies \
@@ -135,12 +136,13 @@ elif [ $1 = "--create-project" ]; then
             type==$ptype \
             packaging==$packaging -d
         mkdir $applicationName
-        unzip $artifactId.zip -d $applicationName/
+        unzip -qq $artifactId.zip -d $applicationName/
         rm $artifactId.zip
         echo
         echo -en "${GREEN}The project $applicationName was successfully generated in $dir/$applicationName${NC}"
     else
         http https://start.spring.io/starter.zip \
+            applicationName==$applicationName \
             artifactId==$artifactId \
             bootVersion==$springBootVersion \
             dependencies==$dependencies \
@@ -151,7 +153,7 @@ elif [ $1 = "--create-project" ]; then
             type==$ptype \
             packaging==$packaging -d
         mkdir $applicationName
-        unzip $artifactId.zip -d $applicationName/
+        unzip -qq $artifactId.zip -d $applicationName/
         rm $artifactId.zip
         echo
         echo -en "${GREEN}The project $applicationName was successfully generated in $dir/$applicationName"
