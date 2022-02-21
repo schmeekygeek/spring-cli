@@ -18,7 +18,7 @@ if [ -z $1 ] || [ $1 = "--help" ]; then
     echo
     exit 1
 
-elif [ $1 = "--dependencies" ]; then
+elif [ $1 = "--list-dependencies" ]; then
     http https://raw.githubusercontent.com/schmeekygeek/spring-cli/main/dependencies.txt | less
 
 elif [ $1 = "--create-project" ]; then
