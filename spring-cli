@@ -37,7 +37,7 @@ elif [ $1 = "--create-project" ]; then
 
     #TODO selection menu for version
     echo -en "${GREEN}${BOLD}: ${YELLOW}Spring-Boot Version  ${NORMAl}${RED} ${BLUE}1)${NC} 2.5.8 ${BLUE}\n\t\t\t2)${NC} 2.5.9 (SNAPSHOT) ${BLUE}\n\t\t\t3)${NC} 2.6.2 ${BLUE}\n\t\t\t4)${NC} 2.6.3 (SNAPSHOT) ${BLUE}\n\t\t\t5)${NC} 2.7.0 (SNAPSHOT)\n${GREEN}${BOLD}: ${BLUE}${NORMAL}Enter Selection: (default = 3) 2.6.2) ${GREEN}==> ${NC}" ; read springBootVersion
-    echo $springBootVersion
+    echo
     if [ -z $springBootVersion ] || [ $springBootVersion = 3 ]; then
         springBootVersion="2.6.2"
     elif [ $springBootVersion = 1 ]; then
@@ -52,7 +52,7 @@ elif [ $1 = "--create-project" ]; then
         echo -e "${RED}?!Invalid Option, selecting Spring-Boot-2.6.2 as default version"
     fi
     
-    echo -en "${GREEN}${BOLD}: ${YELLOW}Dependencies (comma-seperated) ${NORMAl}${RED}(example = web,lombok,mysql)\n\t\t\t\tSee ${GREEN}spring-cli --dependencies \n${GREEN}${BOLD}: ${BLUE}${NORMAL}(default = none) ${GREEN}==> ${NC}" ; read dependencies
+    echo -en "${GREEN}${BOLD}: ${YELLOW}Dependencies (comma-seperated) ${NORMAl}${RED}(example = web,lombok,mysql)\n\t\t\t\tSee ${GREEN}spring-cli --list-dependencies \n${GREEN}${BOLD}: ${BLUE}${NORMAL}(default = none) ${GREEN}==> ${NC}" ; read dependencies
     echo
     if [ -z $dependencies ]; then
         dependencies=""
@@ -157,6 +157,7 @@ elif [ $1 = "--create-project" ]; then
         rm $artifactId.zip
         echo
         echo -en "${GREEN}The project $applicationName was successfully generated in $dir/$applicationName"
+        echo
         echo
     fi
 else
