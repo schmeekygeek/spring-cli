@@ -19,7 +19,7 @@ if [ -z $1 ] || [ $1 = "--help" ]; then
     exit 1
 
 elif [ $1 = "--list-dependencies" ]; then
-    curl https://raw.githubusercontent.com/schmeekygeek/spring-cli/main/dependencies.txt | less
+    curl -s https://raw.githubusercontent.com/schmeekygeek/spring-cli/main/dependencies.txt | less
 
 elif [ $1 = "--create-project" ]; then
     clear
