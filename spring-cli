@@ -19,7 +19,7 @@ if [ -z $1 ] || [ $1 = "--help" ]; then
     exit 1
 
 elif [ $1 = "--list-dependencies" ]; then
-    http https://raw.githubusercontent.com/schmeekygeek/spring-cli/main/dependencies.txt | less
+    curl https://raw.githubusercontent.com/schmeekygeek/spring-cli/main/dependencies.txt | less
 
 elif [ $1 = "--create-project" ]; then
     clear
@@ -157,7 +157,6 @@ elif [ $1 = "--create-project" ]; then
         rm $artifactId.zip
         echo
         echo -en "${GREEN}The project $applicationName was successfully generated in $dir/$applicationName"
-        echo
         echo
     fi
 else
