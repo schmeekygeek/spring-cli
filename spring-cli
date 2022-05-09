@@ -36,20 +36,24 @@ elif [ $1 = "--create-project" ]; then
     fi
 
     #TODO selection menu for version
-    echo -en "${GREEN}${BOLD}: ${YELLOW}Spring-Boot Version  ${NORMAl}${RED} ${BLUE}1)${NC} 2.5.8 ${BLUE}\n\t\t\t2)${NC} 2.5.9 (SNAPSHOT) ${BLUE}\n\t\t\t3)${NC} 2.6.2 ${BLUE}\n\t\t\t4)${NC} 2.6.3 (SNAPSHOT) ${BLUE}\n\t\t\t5)${NC} 2.7.0 (SNAPSHOT)\n${GREEN}${BOLD}: ${BLUE}${NORMAL}Enter Selection: (default = 3) 2.6.2) ${GREEN}==> ${NC}" ; read springBootVersion
+    echo -en "${GREEN}${BOLD}: ${YELLOW}Spring-Boot Version  ${NORMAl}${RED} ${BLUE}1)${NC} 3.0.0 (SNAPSHOT)${BLUE}\n\t\t\t2)${NC} 3.0.0 (M2) ${BLUE}\n\t\t\t3)${NC} 2.7.0 (SNAPSHOT)${BLUE}\n\t\t\t4)${NC} 2.7.0 (M3) ${BLUE}\n\t\t\t5)${NC} 2.6.7 (SNAPSHOT) ${BLUE}\n\t\t\t6)${NC} 2.6.6 \n\t\t\t${BLUE}7)${NC} 2.5.13 (SNAPSHOT) ${BLUE}\n\t\t\t8)${NC} 2.5.12\n${GREEN}${BOLD}: ${BLUE}${NORMAL}Enter Selection: (default = 6) 2.6.6) ${GREEN}==> ${NC}" ; read springBootVersion
     echo
-    if [ -z $springBootVersion ] || [ $springBootVersion = 3 ]; then
-        springBootVersion="2.6.2"
+    if [ -z $springBootVersion ] || [ $springBootVersion = 6 ]; then
+        springBootVersion="2.6.6"
     elif [ $springBootVersion = 1 ]; then
-        springBootVersion="2.5.8"
+        springBootVersion="3.0.0"
     elif [ $springBootVersion = 2 ]; then
-        springBootVersion="2.5.9"
+        springBootVersion="3.0.0"
     elif [ $springBootVersion = 4 ]; then
-        springBootVersion="2.6.3"
+        springBootVersion="2.7.0"
     elif [ $springBootVersion = 5 ]; then
         springBootVersion="2.7.0"
+    elif [ $springBootVersion = 7 ]; then
+        springBootVersion="2.5.13"
+    elif [ $springBootVersion = 8 ]; then
+        springBootVersion="2.5.12"
     else
-        echo -e "${RED}?!Invalid Option, selecting Spring-Boot-2.6.2 as default version"
+        echo -e "${RED}?!Invalid Option, selecting Spring-Boot-2.6.6 as default version"
     fi
     
     echo -en "${GREEN}${BOLD}: ${YELLOW}Dependencies (comma-seperated) ${NORMAl}${RED}(example = web,lombok,mysql)\n\t\t\t\tSee ${GREEN}spring-cli --list-dependencies \n${GREEN}${BOLD}: ${BLUE}${NORMAL}(default = none) ${GREEN}==> ${NC}" ; read dependencies
