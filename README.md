@@ -39,7 +39,7 @@ $ sudo cp spring-cli ~/.local/bin/
 ```
 >To uninstall, simply remove `spring-cli` from `/usr/bin/`
 >```bash
->$ sudo rm /usr/bin/spring-cli
+>$ sudo rm ~/.local/bin/spring-cli
 >```
 
 ## Usage
