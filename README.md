@@ -35,7 +35,7 @@ $ npm install -g httpie
 $ git clone https://github.com/schmeekygeek/spring-cli
 $ cd spring-cli/
 $ chmod +x spring-cli
-$ sudo cp spring-cli /usr/bin/
+$ sudo cp spring-cli ~/.local/bin/
 ```
 >To uninstall, simply remove `spring-cli` from `/usr/bin/`
 >```bash
