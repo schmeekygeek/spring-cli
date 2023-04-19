@@ -9,6 +9,8 @@ Spring-Cli
 </p>
    <p align="center" >A command-line <b><i>Bash</i></b> script to initialize <b><i>Spring-Boot</i></b> projects right from your terminal.</p>
 
+**Read blog post here:** https://schmeeky.pages.dev/posts/spring-cli
+
 ## Table of Contents
 - [About](#About)
 - [Working](#Working)
